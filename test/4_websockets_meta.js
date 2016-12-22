@@ -7,6 +7,7 @@ describe(require('path').basename(__filename), function () {
 
   var happn = require('happn');
   var happn3 = require('happn-3');
+
   var service = happn3.service;
 
   var happn_client = happn.client;
@@ -19,6 +20,7 @@ describe(require('path').basename(__filename), function () {
   var happnInstance = null;
 
   var publisherclient;
+  var listenerclient;
 
   /*
    This test demonstrates starting up the happn service -
@@ -29,9 +31,10 @@ describe(require('path').basename(__filename), function () {
   var disconnected = false;
 
   after(function (done) {
-
-    publisherclient.disconnect(function(e){
-      happnInstance.stop(done);
+    listenerclient.disconnect(function(e){
+      publisherclient.disconnect(function(e){
+        happnInstance.stop(done);
+      });
     });
   });
 

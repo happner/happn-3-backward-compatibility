@@ -5,9 +5,7 @@
   "main": "./lib/index",
   "protocol": "1.1.0",
   "scripts": {
-    "test": "mocha --expose-gc silence.js test",
-    "test-cover": "istanbul cover _mocha -- silence.js test",
-    "test-memory": "mocha --expose-gc test/test-memory"
+    "test": "mocha silence.js test"
   },
   "author": "Tenacious and NSOFT",
   "license": "MIT",
