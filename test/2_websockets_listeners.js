@@ -401,6 +401,8 @@ describe(require('path').basename(__filename), function () {
 
   it('should subscribe and get initial values emitted immediately', function (callback) {
 
+    this.timeout(5000);
+
     var caughtEmitted = 0;
 
     listenerclient.set('/e2e_test1/testsubscribe/data/values_emitted_test/1', {"test": "data"}, function (e) {
@@ -421,9 +423,9 @@ describe(require('path').basename(__filename), function () {
             callback();
           }
 
-
         }, function (e) {
           if (e) return callback(e);
+          console.log('ON HAPPENED:::');
         });
       });
     });
