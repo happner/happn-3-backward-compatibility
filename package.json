@@ -21,13 +21,16 @@
     "url": "https://github.com/happner/happn-3-backward-compatibility.git"
   },
   "dependencies": {
-    "async": "^2.1.2",
-    "bluebird": "2.10.2",
+    "async": "2.5.0",
+    "bluebird": "3.4.6",
+    "fs-extra": "1.0.0",
+    "request": "2.79.0",
+    "restler": "3.4.0",
+    "shortid": "2.2.6",
     "happn": "latest",
     "happn-3": "latest",
     "happn-logger": "0.0.2",
-    "happn-util-crypto": "0.2.3",
-    "shortid": "^2.2.6"
+    "happn-util-crypto": "0.2.3"
   },
   "devDependencies": {
     "chai": "2.2.0",
