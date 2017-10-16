@@ -1,8 +1,5 @@
 describe(require('path').basename(__filename), function () {
 
-  // require('benchmarket').start();
-  // after(require('benchmarket').store());
-
   var expect = require('expect.js');
   var happn = require('happn');
   var happn3 = require('happn-3');
@@ -996,7 +993,4 @@ describe(require('path').basename(__filename), function () {
       }, 1000);
     });
   });
-
-  //require('benchmarket').stop();
-
 });
