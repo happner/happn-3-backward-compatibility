@@ -425,7 +425,6 @@ describe(require('path').basename(__filename), function () {
 
         }, function (e) {
           if (e) return callback(e);
-          console.log('ON HAPPENED:::');
         });
       });
     });

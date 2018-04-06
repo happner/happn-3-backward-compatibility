@@ -397,8 +397,12 @@ describe('b9_security_web_token', function () {
     };
 
     testGroup1.permissions = {
-      '/@HTTP/secure/test/removed/group': {actions: ['get']},
-      '/@HTTP/secure/test/not_removed/group': {actions: ['get']}
+      '/@HTTP/secure/test/removed/group': {
+        actions: ['get']
+      },
+      '/@HTTP/secure/test/not_removed/group': {
+        actions: ['get']
+      }
     };
 
     var testUser1 = {
@@ -439,19 +443,16 @@ describe('b9_security_web_token', function () {
 
                 expect(response.statusCode).to.equal(200);
 
-                delete addedTestGroup1.permissions['/@HTTP/secure/test/removed/group'];
+                happnInstance.services.security.groups.removePermission(testGroup1.name, '/@HTTP/secure/test/removed/group', 'get')
+                  .then(function () {
 
-                happnInstance.services.security.users.upsertGroup(addedTestGroup1, {overwrite: true}, function (e) {
+                    doRequest('/secure/test/removed/group', testClient.session.token, false, function (response) {
 
-                  if (e) return done(e);
+                      expect(response.statusCode).to.equal(403);
+                      callback();
 
-                  doRequest('/secure/test/removed/group', testClient.session.token, false, function (response) {
-
-                    expect(response.statusCode).to.equal(403);
-                    callback();
-
-                  });
-                });
+                    });
+                  }).catch(callback);
               });
             })
 
