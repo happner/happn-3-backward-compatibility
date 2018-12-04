@@ -397,7 +397,7 @@ describe(require('path').basename(__filename), function () {
 
         if (eventType == 'server-side-disconnect') {
 
-          expect(data).to.be('security directory update: user deleted');
+          expect(data.reason).to.be('security directory update: user deleted');
 
           testClient.set('/TEST/a7_eventemitter_security_access/' + test_id + '/set', {test: 'data'}, {}, function (e, result) {
 

@@ -121,7 +121,7 @@ describe(require('path').basename(__filename), function () {
       //first listen for the change
       eventEmitterClient.on('/e2e_test1/testsubscribe/data/event', {event_type: 'set', count: 1}, function (message) {
 
-        expect(eventEmitterClient.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(0);
+        expect(eventEmitterClient.state.events['/SET@/e2e_test1/testsubscribe/data/event']).to.be(undefined);
         callback();
 
       }, function (e) {
@@ -130,7 +130,7 @@ describe(require('path').basename(__filename), function () {
 
         if (!e) {
 
-          expect(eventEmitterClient.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(1);
+          expect(eventEmitterClient.state.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(1);
           //////////////////console.log('on subscribed, about to publish');
 
           //then make the change
@@ -159,29 +159,24 @@ describe(require('path').basename(__filename), function () {
       //first listen for the change
       socketClient.on('/e2e_test1/testsubscribe/data/event', {event_type: 'set', count: 1}, function (message) {
 
-        expect(socketClient.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(0);
+        expect(socketClient.events['/SET@/e2e_test1/testsubscribe/data/event']).to.eql([]);
         callback();
 
       }, function (e) {
 
-        //////////////////console.log('ON HAS HAPPENED: ' + e);
+        if (e) return callback(e);
 
-        if (!e) {
+        expect(socketClient.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(1);
+        //////////////////console.log('on subscribed, about to publish');
 
-          expect(socketClient.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(1);
-          //////////////////console.log('on subscribed, about to publish');
-
-          //then make the change
-          eventEmitterClient.set('/e2e_test1/testsubscribe/data/event', {
-            property1: 'property1',
-            property2: 'property2',
-            property3: 'property3'
-          }, null, function (e, result) {
-            ////////////////////////////console.log('put happened - listening for result');
-          });
-
-        } else
-          callback(e);
+        //then make the change
+        eventEmitterClient.set('/e2e_test1/testsubscribe/data/event', {
+          property1: 'property1',
+          property2: 'property2',
+          property3: 'property3'
+        }, null, function (e, result) {
+          ////////////////////////////console.log('put happened - listening for result');
+        });
       });
 
     } catch (e) {
@@ -542,14 +537,14 @@ describe(require('path').basename(__filename), function () {
       //first listen for the change
       eventEmitterClient.on('/e2e_test1/testsubscribe/data/event', {event_type: 'set', count: 1}, function (message) {
 
-        expect(eventEmitterClient.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(0);
+        expect(eventEmitterClient.state.events['/SET@/e2e_test1/testsubscribe/data/event']).to.be(undefined);
         callback();
 
       }, function (e) {
 
         if (!e) {
 
-          expect(eventEmitterClient.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(1);
+          expect(eventEmitterClient.state.events['/SET@/e2e_test1/testsubscribe/data/event'].length).to.be(1);
 
           ////////////////////////////console.log('on subscribed, about to publish');
 
@@ -631,7 +626,7 @@ describe(require('path').basename(__filename), function () {
           //instance of this event - the event listener should have been removed
           ////console.log('eventEmitterClient.events');
           ////console.log(eventEmitterClient.events);
-          expect(eventEmitterClient.events['/REMOVE@/e2e_test1/testsubscribe/data/delete_me'].length).to.be(0);
+          expect(eventEmitterClient.state.events['/REMOVE@/e2e_test1/testsubscribe/data/delete_me']).to.be(undefined);
 
           ////console.log(eventData);
 
@@ -649,7 +644,7 @@ describe(require('path').basename(__filename), function () {
           if (!e) {
             ////console.log('eventEmitterClient.events, pre');
             ////console.log(eventEmitterClient.events);
-            expect(eventEmitterClient.events['/REMOVE@/e2e_test1/testsubscribe/data/delete_me'].length).to.be(1);
+            expect(eventEmitterClient.state.events['/REMOVE@/e2e_test1/testsubscribe/data/delete_me'].length).to.be(1);
 
             //////////////////console.log('subscribed, about to delete');
 

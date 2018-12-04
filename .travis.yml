@@ -1,7 +1,6 @@
 language: node_js
 
 env:
-  - INTRAVENOUS=yes
   - NODE_TLS_REJECT_UNAUTHORIZED=0
 
 os:
@@ -11,6 +10,7 @@ before_install:
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 
 node_js:
+  - "11"
   - "10"
   - "8"
 
