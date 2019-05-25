@@ -159,7 +159,7 @@ describe(require('path').basename(__filename), function () {
       //first listen for the change
       socketClient.on('/e2e_test1/testsubscribe/data/event', {event_type: 'set', count: 1}, function (message) {
 
-        expect(socketClient.events['/SET@/e2e_test1/testsubscribe/data/event']).to.eql([]);
+        expect(socketClient.events['/SET@/e2e_test1/testsubscribe/data/event']).to.be(undefined);
         callback();
 
       }, function (e) {

@@ -102,7 +102,7 @@ describe(require('path').basename(__filename), function () {
         count: 1
       }, function (message) {
 
-        expect(listenerclient.events['/SET@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/event/*'].length).to.be(0);
+        expect(listenerclient.events['/SET@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/event/*']).to.be(undefined);
         callback();
 
       }, function (e) {
@@ -517,7 +517,7 @@ describe(require('path').basename(__filename), function () {
         count: 1
       }, function (message) {
 
-        expect(listenerclient.events['/SET@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/event'].length).to.be(0);
+        expect(listenerclient.events['/SET@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/event']).to.be(undefined);
         callback();
 
       }, function (e) {
@@ -668,7 +668,7 @@ describe(require('path').basename(__filename), function () {
         count: 1
       }, function (message) {
 
-        expect(listenerclient.events['/SET@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/event'].length).to.be(0);
+        expect(listenerclient.events['/SET@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/event']).to.be(undefined);
         callback();
 
       }, function (e) {
@@ -781,7 +781,7 @@ describe(require('path').basename(__filename), function () {
         //instance of this event - the event listener should have been removed
         ////console.log('listenerclient.events');
         ////console.log(listenerclient.events);
-        expect(listenerclient.events['/REMOVE@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/delete_me'].length).to.be(0);
+        expect(listenerclient.events['/REMOVE@/2_websockets_embedded_sanity/' + test_id + '/testsubscribe/data/delete_me']).to.be(undefined);
 
         ////console.log(eventData);
 
