@@ -5,7 +5,8 @@
   "main": "./lib/index",
   "protocol": "1.1.0",
   "scripts": {
-    "test": "mocha silence.js test"
+    "test": "mocha silence.js test",
+    "prepare":"rm -rf node_modules/bitcore-lib && mv node_modules/happn-bitcore-ecies/node_modules/bitcore-lib node_modules/bitcore-lib && rm -rf node_modules/happn-3/node_modules/bitcore-lib"
   },
   "author": "Tenacious and NSOFT",
   "license": "MIT",
