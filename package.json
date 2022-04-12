@@ -22,7 +22,7 @@
     "url": "https://github.com/happner/happn-3-backward-compatibility.git"
   },
   "dependencies": {
-    "async": "2.5.0",
+    "async": "3.2.2",
     "bluebird": "3.4.6",
     "fs-extra": "1.0.0",
     "request": "2.79.0",
